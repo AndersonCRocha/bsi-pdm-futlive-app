@@ -1,31 +1,22 @@
 import React from 'react'
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import SplashScreen from 'react-native-splash-screen'
 
 import { useAuth } from '../contexts/auth'
 
+import Loading from '../components/Loading'
 import AuthRoutes from './auth.routes'
 import AppRoutes from './app.routes'
 
 const Routes = () => {
   const { signed, isLoading } = useAuth()
 
-  if (isLoading) {
-    return (
-      <View style={styles.loading}>
-        <ActivityIndicator size="large" color="#000" />
-      </View>
-    )
+  if (!isLoading) {
+    SplashScreen.hide()
+  } else {
+    return <Loading />
   }
 
   return signed ? <AppRoutes /> : <AuthRoutes />
 }
-
-const styles = StyleSheet.create({
-  loading: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
 
 export default Routes

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import SplashScreen from 'react-native-splash-screen'
 
 import { googleSignIn } from '../services/auth'
 
