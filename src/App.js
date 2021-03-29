@@ -1,11 +1,18 @@
+import 'react-native-gesture-handler'
+
 import React from 'react'
-import { Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { AuthProvider } from './contexts/auth'
+
+import Routes from './routes'
 
 const App = () => {
   return (
-    <View>
-      <Text>FutLive</Text>
-    </View>
+    <NavigationContainer>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </NavigationContainer>
   )
 }
 
