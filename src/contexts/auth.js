@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import SplashScreen from 'react-native-splash-screen'
 
-import { googleSignIn } from '../services/auth'
+import { basicSignIn } from '../services/auth'
 
 const AuthContext = createContext()
 
@@ -12,12 +11,9 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     async function loadStoragedData() {
-      const [
-        [, storagedToken],
-        [, storagedUser],
-      ] = await AsyncStorage.multiGet(['@Auth:token', '@Auth:user'])
+      const storagedUser = await AsyncStorage.getItem('@Auth:user')
 
-      if (storagedToken && storagedUser) {
+      if (storagedUser) {
         setUser(JSON.parse(storagedUser))
       }
 
@@ -27,14 +23,11 @@ export const AuthProvider = ({ children }) => {
     loadStoragedData()
   }, [])
 
-  async function signIn() {
-    const response = await googleSignIn()
-    setUser(response.user)
-
-    const tokenRecord = ['@Auth:token', response.token]
-    const userRecord = ['@Auth:user', JSON.stringify(response.user)]
-
-    await AsyncStorage.multiSet([tokenRecord, userRecord])
+  async function signIn(name) {
+    const { user } = await basicSignIn(name)
+    setUser(user)
+    setIsLoading(false)
+    await AsyncStorage.setItem('@Auth:user', JSON.stringify(user))
   }
 
   async function signOut() {
@@ -42,9 +35,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null)
   }
 
+  function startLoading() {
+    setIsLoading(true)
+  }
+
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, isLoading, signIn, signOut }}
+      value={{ signed: !!user, user, isLoading, startLoading, signIn, signOut }}
     >
       {children}
     </AuthContext.Provider>

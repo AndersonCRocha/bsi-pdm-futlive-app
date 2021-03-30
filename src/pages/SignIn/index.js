@@ -1,23 +1,44 @@
-import React from 'react'
-import { Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-
+import React, { useState } from 'react'
+import { Text } from 'react-native'
 import { useAuth } from '../../contexts/auth'
 
+import { InputName, SignInButton, SignInWrapper } from './styles'
+
+import Logo from '../../components/Logo'
+
 const SignIn = () => {
-  const { signIn } = useAuth()
+  const { signIn, startLoading } = useAuth()
+  const [name, setName] = useState('')
 
   function handleGoogleSignIn() {
-    alert('pressionou')
-    signIn()
+    if (!name) {
+      alert('Preencha o seu nome!')
+      return
+    }
+
+    if (name.length < 4) {
+      alert('O nome deve ter pelo menos 4 letras')
+      return
+    }
+    startLoading()
+    signIn(name)
   }
 
   return (
-    <View>
-      <TouchableOpacity onPress={handleGoogleSignIn}>
-        <Text>Fazer login</Text>
-      </TouchableOpacity>
-    </View>
+    <SignInWrapper>
+      <Logo />
+
+      <InputName
+        autoFocus={true}
+        onChangeText={setName}
+        value={name}
+        placeholder="Qual o seu nome?"
+      />
+
+      <SignInButton onPress={handleGoogleSignIn}>
+        <Text>Entrar</Text>
+      </SignInButton>
+    </SignInWrapper>
   )
 }
 

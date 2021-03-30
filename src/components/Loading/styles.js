@@ -5,7 +5,7 @@ export const LoadingWrapper = styled.View`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #7cfc00;
+  background-color: ${({ theme }) => theme.green};
 `
 
 export const BallWrapper = styled.View`
@@ -21,7 +21,7 @@ export const Ball = styled.Image`
 export const Shadow = styled.View`
   width: 20px;
   height: 20px;
-  background-color: #555555;
+  background-color: ${({ theme }) => theme.darkerGray};
 `
 export const TextWrapper = styled.Text`
   margin-top: 50px;

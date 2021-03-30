@@ -1,11 +1,9 @@
-export function googleSignIn() {
+export function basicSignIn(name) {
   return new Promise(resolve =>
     setTimeout(() => {
       resolve({
-        token: 'fdkluhfkishufiluhfuishfnslkjcmw',
         user: {
-          name: 'Anderson',
-          email: 'anderson@email.com',
+          name,
         },
       })
     }, 2000)
