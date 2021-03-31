@@ -1,11 +1,27 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { GameWrapper } from './styles'
+import Team from '../Team'
+import {
+  Date,
+  DateWrapper,
+  GameWrapper,
+  Goals,
+  TeamsWrapper,
+  Versus,
+} from './styles'
 
-const Game = ({ item }) => {
+const Game = ({ game, onPress }) => {
   return (
-    <GameWrapper>
-      <Text>{item.title}</Text>
+    <GameWrapper onPress={onPress}>
+      <DateWrapper>
+        <Date>30 de Setembro, 16:00h</Date>
+      </DateWrapper>
+      <TeamsWrapper>
+        <Team team={game.homeTeam} />
+        {game.homeTeam.goals && <Goals>{game.homeTeam.goals}</Goals>}
+        <Versus>X</Versus>
+        {game.visitingTeam.goals && <Goals>{game.visitingTeam.goals}</Goals>}
+        <Team team={game.visitingTeam} />
+      </TeamsWrapper>
     </GameWrapper>
   )
 }

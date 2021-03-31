@@ -1,15 +1,15 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import React, { useRef } from 'react'
+import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack'
 import { DrawerLayout } from 'react-native-gesture-handler'
 
 import { useAuth } from '../contexts/auth'
 import { useTheme } from '../hooks/useTheme'
 
-import Feed from '../pages/Feed'
-import SignOut from '../components/SignOut'
-import MenuToggle from '../components/MenuToggle'
-import { useRef } from 'react'
 import Aside from '../components/Aside'
+import MenuToggle from '../components/MenuToggle'
+
+import Feed from '../pages/Feed'
+import GameDetails from '../pages/GameDetails'
 
 const AppStack = createStackNavigator()
 
@@ -32,19 +32,29 @@ const AppRoutes = () => {
         <Aside closeDrawer={() => menuRef.current.closeDrawer()} />
       )}
     >
-      <AppStack.Navigator>
+      <AppStack.Navigator
+        screenOptions={({ navigation }) => ({
+          headerStyle: {
+            backgroundColor: theme.green,
+          },
+          headerLeft: renderMenuToggle,
+          headerTintColor: theme.black,
+          headerTitleAlign: 'center',
+          headerRight: () => <HeaderBackButton onPress={navigation.goBack} />,
+        })}
+      >
         <AppStack.Screen
-          name={`Olá, ${user.name}!`}
+          name="Feed"
           component={Feed}
           options={{
-            headerStyle: {
-              backgroundColor: theme.green,
-            },
-            headerTintColor: theme.black,
-            headerTitleAlign: 'center',
-            headerLeft: renderMenuToggle,
-            headerRight: () => <SignOut />,
+            headerTitle: `Olá, ${user.name}!`,
+            headerRight: null,
           }}
+        />
+        <AppStack.Screen
+          name="Detalhes"
+          component={GameDetails}
+          options={{ headerTitle: 'Detalhes do jogo' }}
         />
       </AppStack.Navigator>
     </DrawerLayout>
