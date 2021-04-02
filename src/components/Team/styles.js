@@ -2,6 +2,8 @@ import styled from 'styled-components/native'
 
 export const TeamWrapper = styled.View`
   flex-direction: row;
+  justify-content: center;
+  width: 35%;
 `
 
 export const ShieldWrapper = styled.View`

@@ -16,7 +16,12 @@ const Feed = ({ navigation, title = 'Jogos da semana' }) => {
   }
 
   function renderItem({ item }) {
-    return <Game game={item} onPress={() => navigation.navigate('Detalhes')} />
+    return (
+      <Game
+        game={item}
+        onPress={() => navigation.navigate('Detalhes', { itemId: item.id })}
+      />
+    )
   }
 
   return (
