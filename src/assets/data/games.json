@@ -1,8 +1,281 @@
 [
   {
+    "id": "58s694ad0f-3da1-47fd1f-bd96-145571ds9d7a2",
+    "stadium": "São Januário",
+    "round": 6,
+    "date": "15 de abril, 18:30h",
+    "championship": {
+      "name": "Campeonato brasileiro",
+      "numberOfRounds": 32
+    },
+    "homeTeam": {
+      "name": "Vasco",
+      "shield": "https://logodetimes.com/times/vasco/logo-vasco-4096.png",
+      "goals": 1,
+      "classification": 8,
+      "escalation": [
+        {
+          "name": "Alves",
+          "number": 1,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Arão",
+          "number": 5,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Viana",
+          "number": 30,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Isla",
+          "number": 44,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Felipe Luís",
+          "number": 16,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Gomes",
+          "number": 35,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Diego",
+          "number": 10,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Ribeiro",
+          "number": 7,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Gerson",
+          "number": 8,
+          "position": "Atacante"
+        },
+        {
+          "name": "Gabi Gol",
+          "number": 9,
+          "position": "Atacante"
+        },
+        {
+          "name": "Bruno Henrique",
+          "number": 27,
+          "position": "Atacante"
+        }
+      ]
+    },
+    "visitingTeam": {
+      "name": "Fluminense",
+      "shield": "https://logodetimes.com/times/fluminense/logo-fluminense-4096.png",
+      "goals": 1,
+      "classification": 11,
+      "escalation": [
+        {
+          "name": "Borges",
+          "number": 22,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Kanu",
+          "number": 2,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Gilvan",
+          "number": 4,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Lemos",
+          "number": 13,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Carioca",
+          "number": 6,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Ricardinho",
+          "number": 8,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Frizzo",
+          "number": 45,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Otavio",
+          "number": 23,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Antônio",
+          "number": 70,
+          "position": "Atacante"
+        },
+        {
+          "name": "Ferreira",
+          "number": 17,
+          "position": "Atacante"
+        },
+        {
+          "name": "Matheus",
+          "number": 9,
+          "position": "Centroavante"
+        }
+      ]
+    }
+  },
+  {
+    "id": "58s694ad0f-3da1-471f-bd9f6-145571ds9d7a2",
+    "stadium": "Maracanã",
+    "round": 6,
+    "date": "14 de abril, 16:00h",
+    "championship": {
+      "name": "Campeonato brasileiro",
+      "numberOfRounds": 32
+    },
+    "homeTeam": {
+      "name": "Flamengo",
+      "shield": "https://logodetimes.com/times/flamengo/logo-flamengo-4096.png",
+      "goals": 3,
+      "classification": 1,
+      "escalation": [
+        {
+          "name": "Alves",
+          "number": 1,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Arão",
+          "number": 5,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Viana",
+          "number": 30,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Isla",
+          "number": 44,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Felipe Luís",
+          "number": 16,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Gomes",
+          "number": 35,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Diego",
+          "number": 10,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Ribeiro",
+          "number": 7,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Gerson",
+          "number": 8,
+          "position": "Atacante"
+        },
+        {
+          "name": "Gabi Gol",
+          "number": 9,
+          "position": "Atacante"
+        },
+        {
+          "name": "Bruno Henrique",
+          "number": 27,
+          "position": "Atacante"
+        }
+      ]
+    },
+    "visitingTeam": {
+      "name": "Botafogo",
+      "shield": "https://logodetimes.com/times/botafogo/logo-botafogo-4096.png",
+      "goals": 1,
+      "classification": 12,
+      "escalation": [
+        {
+          "name": "Borges",
+          "number": 22,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Kanu",
+          "number": 2,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Gilvan",
+          "number": 4,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Lemos",
+          "number": 13,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Carioca",
+          "number": 6,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Ricardinho",
+          "number": 8,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Frizzo",
+          "number": 45,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Otavio",
+          "number": 23,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Antônio",
+          "number": 70,
+          "position": "Atacante"
+        },
+        {
+          "name": "Ferreira",
+          "number": 17,
+          "position": "Atacante"
+        },
+        {
+          "name": "Matheus",
+          "number": 9,
+          "position": "Centroavante"
+        }
+      ]
+    }
+  },
+  {
     "id": "58s694ad0f-3da1-471f-bd96-145571e29d7a2",
     "stadium": "Morumbi",
-    "round": 7,
+    "round": 6,
+    "date": "12 de abril, 18:00h",
     "championship": {
       "name": "Campeonato brasileiro",
       "numberOfRounds": 32
@@ -11,13 +284,399 @@
       "name": "Palmeiras",
       "shield": "https://logodetimes.com/times/palmeiras/logo-palmeiras-4096.png",
       "goals": 1,
-      "classification": 3
+      "classification": 3,
+      "escalation": [
+        {
+          "name": "Weverton",
+          "number": 21,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Luan",
+          "number": 13,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Marcos Rocha",
+          "number": 2,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Gustavo Gómez",
+          "number": 15,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Matías Viña",
+          "number": 17,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Felipe Melo",
+          "number": 30,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Danilo",
+          "number": 28,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Raphael Veiga",
+          "number": 23,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Wesley",
+          "number": 11,
+          "position": "Atacante"
+        },
+        {
+          "name": "Rony",
+          "number": 7,
+          "position": "Atacante"
+        },
+        {
+          "name": "Luiz Adriano",
+          "number": 10,
+          "position": "Atacante"
+        }
+      ]
     },
     "visitingTeam": {
       "name": "Grêmio",
       "shield": "https://logodetimes.com/times/gremio/logo-gremio-4096.png",
       "goals": 2,
-      "classification": 5
+      "classification": 5,
+      "escalation": [
+        {
+          "name": "Brenno",
+          "number": 21,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Rodrigues",
+          "number": 13,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Kannemann",
+          "number": 15,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Felipe",
+          "number": 2,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Bruno Cortez",
+          "number": 17,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Maicon",
+          "number": 30,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Matheus Henrique",
+          "number": 28,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Alisson",
+          "number": 23,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Jean Pyerre",
+          "number": 11,
+          "position": "Atacante"
+        },
+        {
+          "name": "Ferreira",
+          "number": 7,
+          "position": "Atacante"
+        },
+        {
+          "name": "Diego Souza",
+          "number": 10,
+          "position": "Atacante"
+        }
+      ]
+    }
+  },
+  {
+    "id": "58s694asad0f-3da1-471f-bd96-145571ds9d7a2",
+    "stadium": "Beira-Rio",
+    "round": 6,
+    "date": "12 de abril, 16:00h",
+    "championship": {
+      "name": "Campeonato brasileiro",
+      "numberOfRounds": 32
+    },
+    "homeTeam": {
+      "name": "Internacional",
+      "shield": "https://logodetimes.com/times/internacional/logo-internacional-4096.png",
+      "goals": 2,
+      "classification": 9,
+      "escalation": [
+        {
+          "name": "Alves",
+          "number": 1,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Arão",
+          "number": 5,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Viana",
+          "number": 30,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Isla",
+          "number": 44,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Felipe Luís",
+          "number": 16,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Gomes",
+          "number": 35,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Diego",
+          "number": 10,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Ribeiro",
+          "number": 7,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Gerson",
+          "number": 8,
+          "position": "Atacante"
+        },
+        {
+          "name": "Gabi Gol",
+          "number": 9,
+          "position": "Atacante"
+        },
+        {
+          "name": "Bruno Henrique",
+          "number": 27,
+          "position": "Atacante"
+        }
+      ]
+    },
+    "visitingTeam": {
+      "name": "Coritiba",
+      "shield": "https://logodetimes.com/times/coritiba/logo-coritiba-4096.png",
+      "goals": 0,
+      "classification": 18,
+      "escalation": [
+        {
+          "name": "Borges",
+          "number": 22,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Kanu",
+          "number": 2,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Gilvan",
+          "number": 4,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Lemos",
+          "number": 13,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Carioca",
+          "number": 6,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Ricardinho",
+          "number": 8,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Frizzo",
+          "number": 45,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Otavio",
+          "number": 23,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Antônio",
+          "number": 70,
+          "position": "Atacante"
+        },
+        {
+          "name": "Ferreira",
+          "number": 17,
+          "position": "Atacante"
+        },
+        {
+          "name": "Matheus",
+          "number": 9,
+          "position": "Centroavante"
+        }
+      ]
+    }
+  },
+  {
+    "id": "58s694ad0f-3dfda1-471f-bd96-145571ds9d7a2",
+    "stadium": "Vila Belmiro",
+    "round": 6,
+    "date": "11 de abril, 20:00h",
+    "championship": {
+      "name": "Campeonato brasileiro",
+      "numberOfRounds": 32
+    },
+    "homeTeam": {
+      "name": "Santos",
+      "shield": "https://logodetimes.com/times/santos/logo-santos-4096.png",
+      "goals": 0,
+      "classification": 4,
+      "escalation": [
+        {
+          "name": "Alves",
+          "number": 1,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Arão",
+          "number": 5,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Viana",
+          "number": 30,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Isla",
+          "number": 44,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Felipe Luís",
+          "number": 16,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Gomes",
+          "number": 35,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Diego",
+          "number": 10,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Ribeiro",
+          "number": 7,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Gerson",
+          "number": 8,
+          "position": "Atacante"
+        },
+        {
+          "name": "Gabi Gol",
+          "number": 9,
+          "position": "Atacante"
+        },
+        {
+          "name": "Bruno Henrique",
+          "number": 27,
+          "position": "Atacante"
+        }
+      ]
+    },
+    "visitingTeam": {
+      "name": "Corinthians",
+      "shield": "https://logodetimes.com/times/corinthians/logo-corinthians-4096.png",
+      "goals": 0,
+      "classification": 15,
+      "escalation": [
+        {
+          "name": "Borges",
+          "number": 22,
+          "position": "Goleiro"
+        },
+        {
+          "name": "Kanu",
+          "number": 2,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Gilvan",
+          "number": 4,
+          "position": "Zagueiro"
+        },
+        {
+          "name": "Lemos",
+          "number": 13,
+          "position": "Lateral direito"
+        },
+        {
+          "name": "Carioca",
+          "number": 6,
+          "position": "Lateral esquerdo"
+        },
+        {
+          "name": "Ricardinho",
+          "number": 8,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Frizzo",
+          "number": 45,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Otavio",
+          "number": 23,
+          "position": "Meio campista"
+        },
+        {
+          "name": "Antônio",
+          "number": 70,
+          "position": "Atacante"
+        },
+        {
+          "name": "Ferreira",
+          "number": 17,
+          "position": "Atacante"
+        },
+        {
+          "name": "Matheus",
+          "number": 9,
+          "position": "Centroavante"
+        }
+      ]
     }
   }
 ]

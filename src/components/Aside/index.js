@@ -19,14 +19,14 @@ const Aside = ({ closeDrawer }) => {
           <TextItem>Esconder menu</TextItem>
           <Icon name="arrow-left" size={20} color={theme.black} />
         </AsideItem>
-        <AsideItem onPress={closeDrawer}>
+        {/* <AsideItem onPress={closeDrawer}>
           <TextItem>Jogos da semana</TextItem>
           <Icon name="futbol-o" size={20} color={theme.black} />
         </AsideItem>
         <AsideItem onPress={closeDrawer}>
           <TextItem>Jogos ao vivo</TextItem>
           <Icon name="tv" size={20} color={theme.black} />
-        </AsideItem>
+        </AsideItem> */}
 
         <SignOut />
       </ScrollView>

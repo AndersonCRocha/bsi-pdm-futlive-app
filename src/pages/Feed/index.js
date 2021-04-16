@@ -6,7 +6,7 @@ import { FeedHeader, Title } from './styles'
 
 import games from '../../assets/data/games.json'
 
-const Feed = ({ navigation, title = 'Jogos da semana' }) => {
+const Feed = ({ navigation, title = 'Últimos jogos' }) => {
   function renderHeader() {
     return (
       <FeedHeader>

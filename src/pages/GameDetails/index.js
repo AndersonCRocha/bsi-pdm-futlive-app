@@ -66,7 +66,14 @@ const GameDetails = ({ route, navigation }) => {
 
           <ClassificationTeamWrapper>
             <ClassificationTeam>{game.homeTeam.name}</ClassificationTeam>
-            <SeeLineupButton onPress={() => alert('Ver escalação')}>
+            <SeeLineupButton
+              onPress={() =>
+                navigation.navigate('Escalacao', {
+                  gameId: itemId,
+                  team: 'homeTeam',
+                })
+              }
+            >
               <SeeLineupText>Visualizar</SeeLineupText>
               <Icon name="angle-right" color="#0000FF" size={18} />
             </SeeLineupButton>
@@ -74,7 +81,14 @@ const GameDetails = ({ route, navigation }) => {
 
           <ClassificationTeamWrapper>
             <ClassificationTeam>{game.visitingTeam.name}</ClassificationTeam>
-            <SeeLineupButton onPress={() => alert('Ver escalação')}>
+            <SeeLineupButton
+              onPress={() =>
+                navigation.navigate('Escalacao', {
+                  gameId: itemId,
+                  team: 'visitingTeam',
+                })
+              }
+            >
               <SeeLineupText>Visualizar</SeeLineupText>
               <Icon name="angle-right" color="#0000FF" size={18} />
             </SeeLineupButton>

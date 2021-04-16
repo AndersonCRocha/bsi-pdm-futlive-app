@@ -16,7 +16,7 @@ const Game = ({ game, onPress }) => {
     <Block>
       <GameWrapper onPress={onPress}>
         <DateWrapper>
-          <Date>30 de Setembro, 16:00h</Date>
+          <Date>{game.date}</Date>
         </DateWrapper>
         <TeamsWrapper>
           <Team team={game.homeTeam} />

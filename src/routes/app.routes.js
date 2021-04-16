@@ -10,6 +10,7 @@ import MenuToggle from '../components/MenuToggle'
 
 import Feed from '../pages/Feed'
 import GameDetails from '../pages/GameDetails'
+import Escalation from '../pages/Escalation'
 
 const AppStack = createStackNavigator()
 
@@ -33,6 +34,7 @@ const AppRoutes = () => {
       )}
     >
       <AppStack.Navigator
+        mode="card"
         screenOptions={({ navigation }) => ({
           headerStyle: {
             backgroundColor: theme.green,
@@ -55,6 +57,11 @@ const AppRoutes = () => {
           name="Detalhes"
           component={GameDetails}
           options={{ headerTitle: 'Detalhes do jogo' }}
+        />
+        <AppStack.Screen
+          name="Escalacao"
+          component={Escalation}
+          options={{ headerTitle: 'Escalação' }}
         />
       </AppStack.Navigator>
     </DrawerLayout>
