@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react'
+import { ESCALATION_API_URL } from '../../utils/constants'
 
-import games from '../../assets/data/games.json'
 import { Block } from '../../components/Game/styles'
 import { Col, Row, Table, Title } from './styles'
 
 const Escalation = ({ route }) => {
   const [escalation, setEscalation] = useState([])
   const [teamName, setTeamName] = useState('')
-  const { gameId, team } = route.params
+  const { teamId } = route.params
 
   useEffect(() => {
-    const selectedGame = games.find(({ id }) => id === gameId)
-    setEscalation(selectedGame[team].escalation)
-    setTeamName(selectedGame[team].name)
+    fetchEscalation(teamId)
   }, [])
+
+  async function fetchEscalation(teamId) {
+    try {
+      const url = `${ESCALATION_API_URL}/escalation/${teamId}`
+      console.log('Fetching escalation in: ', url)
+      const response = await fetch(url)
+      const escalationResponse = await response.json()
+      setEscalation(escalationResponse.escalation)
+      setTeamName(escalationResponse.teamName)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Block>

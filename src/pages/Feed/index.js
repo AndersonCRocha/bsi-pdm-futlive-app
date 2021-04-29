@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
-import { FEED_API_URL, PER_PAGE_FEED } from '../../utils/constants'
-import { sleep } from '../../utils/functions'
+import { FEED_API_URL } from '../../utils/constants'
 import Game from '../../components/Game'
 
 import { FeedHeader, FooterSpace, Loading, Title } from './styles'
@@ -25,7 +24,9 @@ const Feed = ({ navigation, title = 'Últimos jogos' }) => {
 
   async function fetchTotalGames() {
     try {
-      const response = await fetch(`${FEED_API_URL}/feed-total`)
+      const url = `${FEED_API_URL}/feed-total`
+      console.log('Fetching total games in: ', url)
+      const response = await fetch(url)
       const total = parseInt(await response.text())
       setTotalGames(total - 1)
     } catch (error) {
@@ -35,7 +36,9 @@ const Feed = ({ navigation, title = 'Últimos jogos' }) => {
 
   async function fetchFeed(_page) {
     try {
-      const response = await fetch(`${FEED_API_URL}/feed?page=${_page}`)
+      const url = `${FEED_API_URL}/feed?page=${_page}`
+      console.log('Fetching feed in: ', url)
+      const response = await fetch(url)
       return response.json()
     } catch (error) {
       console.log(error)

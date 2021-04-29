@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
+import { DETAILS_API_URL } from '../../utils/constants'
 import Game from '../../components/Game'
 import Loading from '../../components/Loading'
 
@@ -17,17 +18,27 @@ import {
   SeeLineupText,
 } from './styles'
 
-import games from '../../assets/data/games.json'
 import { Block } from '../../components/Game/styles'
 
 const GameDetails = ({ route, navigation }) => {
   const [game, setGame] = useState(null)
-  const itemId = route.params.itemId
+  const gameId = route.params.itemId
 
   useEffect(() => {
-    const selectedGame = games.find(({ id }) => id === itemId)
-    setGame(selectedGame)
+    fetchGame(gameId)
   }, [])
+
+  async function fetchGame(gameId) {
+    try {
+      const url = `${DETAILS_API_URL}/game-details/${gameId}`
+      console.log('Fetching game details in: ', url)
+      const response = await fetch(url)
+      const game = await response.json()
+      setGame(game)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   function renderCaretUpOrDown(team) {
     const { homeTeam, visitingTeam } = game
@@ -69,8 +80,7 @@ const GameDetails = ({ route, navigation }) => {
             <SeeLineupButton
               onPress={() =>
                 navigation.navigate('Escalacao', {
-                  gameId: itemId,
-                  team: 'homeTeam',
+                  teamId: game.homeTeam.id,
                 })
               }
             >
@@ -84,8 +94,7 @@ const GameDetails = ({ route, navigation }) => {
             <SeeLineupButton
               onPress={() =>
                 navigation.navigate('Escalacao', {
-                  gameId: itemId,
-                  team: 'visitingTeam',
+                  teamId: game.visitingTeam.id,
                 })
               }
             >
