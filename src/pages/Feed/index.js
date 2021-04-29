@@ -1,33 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
-import { PER_PAGE_FEED } from '../../utils/constants'
+import { FEED_API_URL, PER_PAGE_FEED } from '../../utils/constants'
 import { sleep } from '../../utils/functions'
 import Game from '../../components/Game'
 
 import { FeedHeader, FooterSpace, Loading, Title } from './styles'
 import staticGames from '../../assets/data/games.json'
+import { useLayoutEffect } from 'react'
 
 const Feed = ({ navigation, title = 'Últimos jogos' }) => {
   const [games, setGames] = useState([])
-  const [page, setPage] = useState(0)
+  const [totalGames, setTotalGames] = useState(0)
+  const [page, setPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
+
+  useLayoutEffect(() => {
+    fetchTotalGames()
+  }, [])
 
   useEffect(() => {
     loadFeed()
   }, [])
 
-  async function fetchFeed(_page) {
-    await sleep(500)
+  async function fetchTotalGames() {
+    try {
+      const response = await fetch(`${FEED_API_URL}/feed-total`)
+      const total = parseInt(await response.text())
+      setTotalGames(total - 1)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-    const firstItem = _page * PER_PAGE_FEED
-    return staticGames.filter(
-      (_, index) => index >= firstItem && index < firstItem + PER_PAGE_FEED
-    )
+  async function fetchFeed(_page) {
+    try {
+      const response = await fetch(`${FEED_API_URL}/feed?page=${_page}`)
+      return response.json()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async function loadFeed() {
-    if (isLoading || games.length === staticGames.length || isRefreshing) {
+    if (isLoading || games.length > totalGames || isRefreshing) {
       if (isRefreshing) setIsRefreshing(false)
       return
     }
