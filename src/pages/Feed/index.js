@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList } from 'react-native'
-import { FEED_API_URL } from '../../utils/constants'
+import { ActivityIndicator, Alert, FlatList } from 'react-native'
+import { DETAILS_API_URL, FEED_API_URL } from '../../utils/constants'
+import api from '../../services/api'
 import Game from '../../components/Game'
 
 import { FeedHeader, FooterSpace, Loading, Title } from './styles'
-import staticGames from '../../assets/data/games.json'
-import { useLayoutEffect } from 'react'
 
 const Feed = ({ navigation, title = 'Últimos jogos' }) => {
   const [games, setGames] = useState([])
@@ -13,59 +12,92 @@ const Feed = ({ navigation, title = 'Últimos jogos' }) => {
   const [page, setPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const [isRefreshing, setIsRefreshing] = useState(false)
-
-  useLayoutEffect(() => {
-    fetchTotalGames()
-  }, [])
+  const [feedApiIsUnavailable, setFeedApiIsUnavailable] = useState(false)
+  const [
+    gameDetailsApiIsUnavailable,
+    setGameDetailsApiIsUnavailable,
+  ] = useState(false)
 
   useEffect(() => {
-    loadFeed()
-  }, [])
+    const unsubscribe = navigation.addListener('focus', () => {
+      verifyServices()
+        .then(() => {
+          fetchTotalGames()
+          loadFeed(true)
+        })
+        .catch(() => {
+          navigation.navigate('ServiceUnavailable', {
+            targetRoute: 'Feed',
+          })
+        })
+    })
+
+    return unsubscribe
+  }, [navigation])
+
+  async function verifyServices() {
+    const [feedApiIsAlive, detailsApiIsAlive] = await Promise.all([
+      api.apiIsAlive(FEED_API_URL),
+      api.apiIsAlive(DETAILS_API_URL),
+    ])
+
+    setFeedApiIsUnavailable(!feedApiIsAlive)
+    setGameDetailsApiIsUnavailable(!detailsApiIsAlive)
+
+    return feedApiIsAlive ? Promise.resolve() : Promise.reject()
+  }
 
   async function fetchTotalGames() {
     try {
-      const url = `${FEED_API_URL}/feed-total`
-      console.log('Fetching total games in: ', url)
-      const response = await fetch(url)
-      const total = parseInt(await response.text())
-      setTotalGames(total - 1)
+      setTotalGames(await api.getFeedItemTotal())
     } catch (error) {
-      console.log(error)
+      setFeedApiIsUnavailable(true)
     }
   }
 
-  async function fetchFeed(_page) {
-    try {
-      const url = `${FEED_API_URL}/feed?page=${_page}`
-      console.log('Fetching feed in: ', url)
-      const response = await fetch(url)
-      return response.json()
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  async function loadFeed() {
-    if (isLoading || games.length > totalGames || isRefreshing) {
-      if (isRefreshing) setIsRefreshing(false)
+  async function loadFeed(_isRefreshing = false) {
+    if (
+      isLoading ||
+      (totalGames !== 0 &&
+        games.length === totalGames &&
+        _isRefreshing !== true)
+    ) {
       return
     }
 
-    setIsLoading(true)
+    if (_isRefreshing === true) {
+      setGames([])
+      setPage(1)
+      setIsRefreshing(true)
+    }
 
-    const actualFeed = await fetchFeed(page)
+    if (feedApiIsUnavailable) {
+      navigation.navigate('ServiceUnavailable', {
+        targetRoute: 'Feed',
+      })
+    } else {
+      setIsLoading(true)
+      const _page = _isRefreshing === true ? 1 : page
+      const actualFeed = await api.findGamesByPage(_page)
 
-    setPage(prevState => prevState + 1)
-    setGames(prevState => [...prevState, ...actualFeed])
-    setIsLoading(false)
-    setIsRefreshing(false)
+      setPage(prevState => prevState + 1)
+      setGames(prevState => [...prevState, ...actualFeed])
+      setIsLoading(false)
+      setIsRefreshing(false)
+    }
   }
 
   function handleRefresh() {
-    setPage(0)
-    setGames([])
-    setIsRefreshing(true)
-    loadFeed()
+    verifyServices()
+      .then(() => {
+        fetchTotalGames()
+        loadFeed(true)
+      })
+      .catch(() => {
+        navigation.navigate('ServiceUnavailable', {
+          targetRoute: 'Feed',
+        })
+      })
   }
 
   function renderHeader() {
@@ -77,16 +109,28 @@ const Feed = ({ navigation, title = 'Últimos jogos' }) => {
   }
 
   function renderItem({ item }) {
+    function navigate() {
+      navigation.navigate('Detalhes', { itemId: item.id })
+    }
+
+    function alertServerIsUnavailable() {
+      Alert.alert(
+        'O servidor está indisponível no momento. Tente novamente mais tarde!'
+      )
+    }
+
     return (
       <Game
         game={item}
-        onPress={() => navigation.navigate('Detalhes', { itemId: item.id })}
+        onPress={
+          gameDetailsApiIsUnavailable ? alertServerIsUnavailable : navigate
+        }
       />
     )
   }
 
   const renderFooter = () =>
-    isLoading && staticGames.length !== games.length ? (
+    isLoading && totalGames !== games.length ? (
       <Loading>
         <ActivityIndicator color="black" size={28} />
       </Loading>

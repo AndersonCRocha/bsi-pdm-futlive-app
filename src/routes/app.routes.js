@@ -11,6 +11,7 @@ import MenuToggle from '../components/MenuToggle'
 import Feed from '../pages/Feed'
 import GameDetails from '../pages/GameDetails'
 import Escalation from '../pages/Escalation'
+import ServiceUnavailable from '../pages/ServiceUnavailable'
 
 const AppStack = createStackNavigator()
 
@@ -62,6 +63,11 @@ const AppRoutes = () => {
           name="Escalacao"
           component={Escalation}
           options={{ headerTitle: 'Escalação' }}
+        />
+        <AppStack.Screen
+          name="ServiceUnavailable"
+          component={ServiceUnavailable}
+          options={{ headerTitle: 'Erro', headerLeft: null, headerRight: null }}
         />
       </AppStack.Navigator>
     </DrawerLayout>

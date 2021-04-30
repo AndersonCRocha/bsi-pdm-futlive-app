@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { ESCALATION_API_URL } from '../../utils/constants'
 
 import { Block } from '../../components/Game/styles'
 import { Col, Row, Table, Title } from './styles'
+import api from '../../services/api'
 
 const Escalation = ({ route }) => {
   const [escalation, setEscalation] = useState([])
@@ -10,21 +10,34 @@ const Escalation = ({ route }) => {
   const { teamId } = route.params
 
   useEffect(() => {
-    fetchEscalation(teamId)
-  }, [])
-
-  async function fetchEscalation(teamId) {
-    try {
-      const url = `${ESCALATION_API_URL}/escalation/${teamId}`
-      console.log('Fetching escalation in: ', url)
-      const response = await fetch(url)
-      const escalationResponse = await response.json()
-      setEscalation(escalationResponse.escalation)
-      setTeamName(escalationResponse.teamName)
-    } catch (error) {
-      console.log(error)
+    async function fetchEscalation() {
+      try {
+        const response = await api.findEscalationByTeamId(teamId)
+        setEscalation(response.escalation)
+        setTeamName(response.teamName)
+      } catch (error) {
+        setApiIsUnavailable(true)
+      }
     }
+
+    verifyService()
+      .then(() => {
+        fetchEscalation()
+      })
+      .catch(() => {
+        navigation.navigate('ServiceUnavailable', {
+          targetRoute: 'Feed',
+        })
+      })
+  }, [teamId])
+
+  async function verifyService() {
+    const escalationApiIsAlive = await api.apiIsAlive(ESCALATION_API_URL)
+
+    return escalationApiIsAlive ? Promise.resolve() : Promise.reject()
   }
+
+  if (escalation.length === 0) return null
 
   return (
     <Block>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { DETAILS_API_URL, ESCALATION_API_URL } from '../../utils/constants'
+import api from '../../services/api'
 
-import { DETAILS_API_URL } from '../../utils/constants'
 import Game from '../../components/Game'
 import Loading from '../../components/Loading'
 
@@ -22,22 +24,41 @@ import { Block } from '../../components/Game/styles'
 
 const GameDetails = ({ route, navigation }) => {
   const [game, setGame] = useState(null)
+  const [escalationApiIsUnavailable, setEscalationApiIsUnavailable] = useState(
+    false
+  )
   const gameId = route.params.itemId
 
   useEffect(() => {
-    fetchGame(gameId)
-  }, [])
-
-  async function fetchGame(gameId) {
-    try {
-      const url = `${DETAILS_API_URL}/game-details/${gameId}`
-      console.log('Fetching game details in: ', url)
-      const response = await fetch(url)
-      const game = await response.json()
-      setGame(game)
-    } catch (error) {
-      console.log(error)
+    async function fetchGame() {
+      try {
+        const apiGame = await api.findGameById(gameId)
+        setGame(apiGame)
+      } catch (error) {
+        console.log(error)
+      }
     }
+
+    verifyServices()
+      .then(() => {
+        fetchGame()
+      })
+      .catch(() => {
+        navigation.navigate('ServiceUnavailable', {
+          targetRoute: 'Feed',
+        })
+      })
+  }, [gameId])
+
+  async function verifyServices() {
+    const [detailsApiIsAlive, escalationApiIsAlive] = await Promise.all([
+      api.apiIsAlive(DETAILS_API_URL),
+      api.apiIsAlive(ESCALATION_API_URL),
+    ])
+
+    setEscalationApiIsUnavailable(!escalationApiIsAlive)
+
+    return detailsApiIsAlive ? Promise.resolve() : Promise.reject()
   }
 
   function renderCaretUpOrDown(team) {
@@ -63,6 +84,18 @@ const GameDetails = ({ route, navigation }) => {
     }
   }
 
+  function navigate(teamId) {
+    if (escalationApiIsUnavailable) {
+      Alert.alert(
+        'O servidor está indisponível no momento. Tente novamente mais tarde!'
+      )
+    } else {
+      navigation.navigate('Escalacao', {
+        teamId,
+      })
+    }
+  }
+
   if (!game) {
     return <Loading />
   }
@@ -77,13 +110,7 @@ const GameDetails = ({ route, navigation }) => {
 
           <ClassificationTeamWrapper>
             <ClassificationTeam>{game.homeTeam.name}</ClassificationTeam>
-            <SeeLineupButton
-              onPress={() =>
-                navigation.navigate('Escalacao', {
-                  teamId: game.homeTeam.id,
-                })
-              }
-            >
+            <SeeLineupButton onPress={() => navigate(game.homeTeam.id)}>
               <SeeLineupText>Visualizar</SeeLineupText>
               <Icon name="angle-right" color="#0000FF" size={18} />
             </SeeLineupButton>
@@ -91,13 +118,7 @@ const GameDetails = ({ route, navigation }) => {
 
           <ClassificationTeamWrapper>
             <ClassificationTeam>{game.visitingTeam.name}</ClassificationTeam>
-            <SeeLineupButton
-              onPress={() =>
-                navigation.navigate('Escalacao', {
-                  teamId: game.visitingTeam.id,
-                })
-              }
-            >
+            <SeeLineupButton onPress={() => navigate(game.visitingTeam.id)}>
               <SeeLineupText>Visualizar</SeeLineupText>
               <Icon name="angle-right" color="#0000FF" size={18} />
             </SeeLineupButton>
