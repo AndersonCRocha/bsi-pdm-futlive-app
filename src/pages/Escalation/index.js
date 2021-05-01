@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { ESCALATION_API_URL } from '../../utils/constants'
 
 import { Block } from '../../components/Game/styles'
 import { Col, Row, Table, Title } from './styles'
 import api from '../../services/api'
 
-const Escalation = ({ route }) => {
+const Escalation = ({ navigation, route }) => {
   const [escalation, setEscalation] = useState([])
   const [teamName, setTeamName] = useState('')
   const { teamId } = route.params
@@ -24,7 +25,8 @@ const Escalation = ({ route }) => {
       .then(() => {
         fetchEscalation()
       })
-      .catch(() => {
+      .catch(error => {
+        console.log('catch: ', error)
         navigation.navigate('ServiceUnavailable', {
           targetRoute: 'Feed',
         })
